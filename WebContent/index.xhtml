@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+        <title>Quản trị</title>     
+        <link href="/AdminWeb/css/mos-style.css" rel="stylesheet" type="text/css" media="all" />
+</h:head> 
+<body> 
+	<!-- <h:link value="Link" outcome="hienthi"></h:link>
+	<h:form>
+		<h:commandLink value="Kết quả"  action="#{helloManagedBean.KetQua()}"></h:commandLink>
+		<br></br>
+		<h:commandButton action="#{helloManagedBean.KetQua()}" value="Kết quả" ></h:commandButton>
+		<br></br>
+		<h:commandLink action="#{sinhVienController.ThongTinSinhVien()}" value="Thông tin sinh viên" />
+	</h:form> -->
+	
+	
+	<ui:include src="/header.xhtml" />
+	
+	<div id="wrapper">
+			<ui:include src="/menu.xhtml" />
+			<ui:include src="/content.xhtml" />	
+			<ui:include src="/footer.xhtml" />
+	</div>
+
+</body> 
+</html>

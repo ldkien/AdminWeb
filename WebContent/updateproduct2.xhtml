@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+	<title>Update Product</title>
+	<link href="/AdminWeb/css/mos-style.css" rel="stylesheet"
+		type="text/css" media="all" />
+	<link href="/AdminWeb/css/bootstrap.css" rel="stylesheet"
+		type="text/css" />
+	<link href="/AdminWeb/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css" media="all" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</h:head>
+<body>
+	<ui:include src="/header.xhtml" />
+
+	<div id="wrapper1">
+		<ui:include src="/menu.xhtml" />
+		<div id="rightContent1"></div>
+		<h:form>
+		<div class="table-responsive">
+			<p:dataTable id="cartTable"  tableStyleClass="table table-hover" tableStyle="table-layout: auto;"  value="#{productBean.getAll()}"
+				var="item">
+				<p:column>
+					<f:facet name="header" >
+						<h:outputText value="ID"  />
+					</f:facet>
+					<h:outputText value="#{item.productId}"  styleClass="col-md-2" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{item.productName}"  styleClass="col-md-8" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Price" />
+					</f:facet>
+					<h:outputText value="#{item.productPrice}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Image" />
+					</f:facet>
+					<h:graphicImage value="#{item.productImage}" /> 
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Description" />
+					</f:facet>
+					<h:outputText value="#{item.productDescription}" /> 
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Delete" />
+					</f:facet>
+					<p:commandButton styleClass="btn btn-danger"  title="Delete"
+						actionListener="#{productBean.deleteProduct(item)}"
+						update="cartTable" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Update" />
+					</f:facet>
+					<p:commandButton styleClass="btn btn-info"  title="update"
+						actionListener="#{productBean.deleteProduct(item)}"
+						update="cartTable" />
+				</p:column>
+			</p:dataTable>
+		</div>
+		</h:form>
+		<div class="clear"></div>
+		<ui:include src="/footer.xhtml" />
+	</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+	<title>Add Product</title>
+	<link href="/AdminWeb/css/mos-style.css" rel="stylesheet"
+		type="text/css" media="all" />
+	<link href="/AdminWeb/css/bootstrap.css" rel="stylesheet"
+		type="text/css" />
+	<link href="/AdminWeb/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css" media="all" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</h:head>
+<body>
+	<ui:include src="/header.xhtml" />
+
+	<div id="wrapper">
+		<ui:include src="/menu.xhtml" />
+		<div id="rightContent">
+			<div id="hoang">
+			<h:form enctype="multipart/form-data" >
+				<h:outputText value="Name"  style="margin-left:50px;"/>
+				<h:inputText value="#{productBean.product.productName}"  style="margin-left:10px;"/>
+				<br />
+				<br />
+				<h:outputText value="Price"  style="margin-left:50px;"/>
+				<h:inputText value="#{productBean.product.productPrice}" style="margin-left:15px;"/>
+				<br />
+				<br />
+				<h:outputText value="Import Price"  style="margin-left:10px;"/>
+				<h:inputText value="#{productBean.product.productPrice}" style="margin-left:10px;"/>
+				<br />
+				<br />
+				<h:outputText value="Image"  style="margin-left:50px;"/>
+				<h:graphicImage value="#{productBean.product.productImage}" style="margin-left:10px;border:solid 1px;"></h:graphicImage>
+				<h:inputFile value="#{productBean.part}" style="margin-left:100px;"></h:inputFile>
+				<h:inputHidden value="#{productBean.product.productImage}"  name="image"/>
+				<br />
+				<br />
+				<h:outputText value="Category"  style="margin-left:30px;"/>
+				<h:selectOneMenu style="margin-left:10px;" value="#{productBean.category.categoryId}">
+					<f:selectItems value="#{categoryBean.getAll()}" var="item" itemLabel="#{item.categoryName}" itemValue="#{item.categoryId}"/>
+				</h:selectOneMenu>
+				<br />
+				<br />
+				<h:outputText value="Description"  style="margin-left:20px;"/>
+				<br />
+				<h:inputTextarea  value="#{productBean.product.productDescription}"   style="margin-left:100px;width:500px;height:120px;"/>
+				<br />
+				<br />
+				<center>
+						<h:commandButton class="btn btn-info " value="Add"
+							action="#{productBean.addProduct()}"></h:commandButton>
+				</center>
+				</h:form>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+		<ui:include src="/footer.xhtml" />
+	</div>
+</body>
+</html>

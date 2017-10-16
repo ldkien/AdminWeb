@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+	<title>Update Product</title>
+	<link href="/AdminWeb/css/mos-style.css" rel="stylesheet"
+		type="text/css" media="all" />
+	<link href="/AdminWeb/css/bootstrap.css" rel="stylesheet"
+		type="text/css" />
+	<link href="/AdminWeb/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css" media="all" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</h:head>
+<body>
+	<ui:include src="/header.xhtml" />
+
+	<div id="wrapper">
+		<ui:include src="/menu.xhtml" />
+		<div id="rightContent">
+			<div id="hoang">
+			<h:form >
+				<input type="hidden" value="#{categoryBean.findCategoryById(param['id']).categoryId}"  name="id"/>
+				<h:panelGrid columns="4" cellpadding="2" cellspacing="2"></h:panelGrid>
+				<h:outputText value="Name"  style="margin-left:50px;"/>
+				<input type="text" name="namecate" value="#{categoryBean.findCategoryById(param['id']).categoryName}"  style="margin-left:10px;"/>
+				<br />
+				<br />
+				<h:commandButton class="btn btn-info " value="Update"
+							action="#{categoryBean.updateCatergory(param['id'])}" style="margin-left:100px;"></h:commandButton>
+				</h:form>
+			</div>
+		</div>
+		<h:outputScript rendered="#{categoryBean.kt}">
+   			alert("Category name exist");
+		</h:outputScript>
+		<div class="clear"></div>
+		<ui:include src="/footer.xhtml" />
+	</div>
+</body>
+</html>

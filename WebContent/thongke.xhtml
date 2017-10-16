@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+	<title>Details Bill</title>
+	<link href="/AdminWeb/css/mos-style.css" rel="stylesheet"
+		type="text/css" media="all" />
+	<link href="/AdminWeb/css/bootstrap.css" rel="stylesheet"
+		type="text/css" />
+	<link href="/AdminWeb/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css" media="all" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</h:head>
+<body>
+	<ui:include src="/header.xhtml" />
+
+	<div id="wrapper">
+		<ui:include src="/menu.xhtml" />
+		<div id="rightContent">
+		<center><h:form>Month: <h:selectOneMenu value="#{billBean.month}">
+			<f:selectItem itemValue="1" itemLabel="January" />
+   			<f:selectItem itemValue="2" itemLabel="February" />
+   			<f:selectItem itemValue="3" itemLabel="March" />
+   			<f:selectItem itemValue="4" itemLabel="April" />
+   			<f:selectItem itemValue="5" itemLabel="May" />
+   			<f:selectItem itemValue="6" itemLabel="June" />
+   			<f:selectItem itemValue="7" itemLabel="July" />
+   			<f:selectItem itemValue="8" itemLabel="August" />
+   			<f:selectItem itemValue="8" itemLabel="September" />
+   			<f:selectItem itemValue="10" itemLabel="October" />
+   			<f:selectItem itemValue="11" itemLabel="November" />
+   			<f:selectItem itemValue="12" itemLabel="December" />
+   			
+		</h:selectOneMenu><h:commandButton action="#{billBean.listenerThongKe()}" value="Submit" /> </h:form></center>
+		<br/>
+		<br/>
+			<h:form>
+				<div class="table-responsive">
+					<h:dataTable value="#{billBean.getByDate()}" var="p"
+						class="table table-hover table-bordered">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText value="#{p.billId}" class="col-md-2" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Customer Name" />
+							</f:facet>
+							<h:outputText value="#{userBean.getUser(p.users.userId).userName}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Total" />
+							</f:facet>
+							<h:outputText value="#{p.total}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Payment" />
+							</f:facet>
+							<h:outputText value="#{p.payment}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Adrress" />
+							</f:facet>
+							<h:outputText value="#{p.address}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Date" />
+							</f:facet>
+							<h:outputText value="#{p.date}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="View" />
+							</f:facet>
+								<h:commandLink action="#{billBean.ViewBillDetail(p.billId)}" value="View" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Delete" />
+							</f:facet>
+								<h:selectBooleanCheckbox value="#{billBean.checked[p.billId]}" />
+						</h:column>
+					</h:dataTable>
+	
+						
+						<h:commandButton value="Delete" action="#{billBean.delete()}" style="margin-left:699px;"/>
+						<center>Total Price : <h:outputText value="#{billBean.billTotalByDate()}" /></center>
+	
+					<center><h:commandLink action="#{productBean.listenerTop()}" value="Top Product" /></center>
+					
+				</div>
+			</h:form>
+		</div>
+
+		<div class="clear"></div>
+		
+	</div>
+</body>
+</html>

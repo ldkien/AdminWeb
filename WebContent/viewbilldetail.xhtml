@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+	<title>Details Bill</title>
+	<link href="/AdminWeb/css/mos-style.css" rel="stylesheet"
+		type="text/css" media="all" />
+	<link href="/AdminWeb/css/bootstrap.css" rel="stylesheet"
+		type="text/css" />
+	<link href="/AdminWeb/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css" media="all" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</h:head>
+<body>
+	<ui:include src="/header.xhtml" />
+
+	<div id="wrapper">
+		<ui:include src="/menu.xhtml" />
+		<div id="rightContent">
+		<center><p>Details bill</p></center>
+			<h:form>
+				<div class="table-responsive">
+					<h:dataTable value="#{detailBean.ViewBill(param['id'])}" var="p"
+						class="table table-hover table-bordered">
+						<!--  <h:column>
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:inputHidden  value="#{p.billDetailId}"  />
+						</h:column>-->
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Bill ID" />
+							</f:facet>
+							<h:outputText value="#{p.bill.billId}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Product" />
+							</f:facet>
+							<h:outputText value="#{p.product.productName}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Price" />
+							</f:facet>
+							<h:outputText value="#{p.price}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Quantity" />
+							</f:facet>
+							<h:outputText value="#{p.quantity}" />
+						</h:column>
+						<center>Total: <h:outputText value="#{billBean.totalBill()}" /></center>S
+					</h:dataTable>
+				</div>
+			</h:form>
+		</div>
+
+		<div class="clear"></div>
+		<ui:include src="/footer.xhtml" />
+	</div>
+</body>
+</html>
